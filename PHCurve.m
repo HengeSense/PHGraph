@@ -142,4 +142,36 @@
 		CGContextStrokePath(context);
 	CGColorRelease(color);
 }
+
+-(int) drawTitleWithContext:(CGContextRef)context rect:(NSRect)rect
+{
+    if( Title != nil)
+    {
+        NSMutableDictionary *attributes;
+        attributes = [[NSMutableDictionary alloc] init];
+        if ([attributes objectForKey:NSForegroundColorAttributeName])
+        {
+            [attributes removeObjectForKey:NSForegroundColorAttributeName];
+        }
+        [attributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
+        NSRect bound = [Title boundingRectWithSize:rect.size options:0 attributes:attributes];
+        
+        CGColorRef color = [cocoaColor toCGColorRef];
+        CGContextSetStrokeColorWithColor(context, color);
+        CGContextSetLineWidth(context, width);
+        CGContextBeginPath(context);
+        
+		CGContextMoveToPoint(context, rect.origin.x, rect.origin.y+bound.size.height/2);
+		CGContextAddLineToPoint(context, rect.origin.x+10, rect.origin.y+bound.size.height/2);
+        CGContextStrokePath(context);
+        CGColorRelease(color);
+       
+        [Title drawAtPoint:NSMakePoint(rect.origin.x+13,rect.origin.y) withAttributes:attributes];
+        CGContextStrokePath(context);
+        
+        
+        return bound.size.height+5;
+    }
+    return 0;
+}
 @end

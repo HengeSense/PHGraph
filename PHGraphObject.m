@@ -13,6 +13,11 @@
 -(void)drawWithContext:(CGContextRef)context rect:(NSRect)rect
 {}
 
+-(int)drawTitleWithContext:(CGContextRef)context rect:(NSRect)rect
+{
+    return 0;
+}
+
 -(id)initWithXAxis:(PHxAxis *)aPHxAxis yAxis:(PHyAxis *)aPHyAxis
 {
 	[super init];
@@ -60,6 +65,11 @@
 -(void)setShouldDraw:(BOOL)flag
 {
 	shouldDraw = flag;
+}
+
+-(void)setTitle:(NSString *)newTitle
+{
+    Title = newTitle;
 }
 
 @end

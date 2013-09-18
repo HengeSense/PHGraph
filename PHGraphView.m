@@ -468,9 +468,9 @@
 		clippingArea.size.width -= leftBorder+rightBorder;
 		clippingArea.size.height -= bottomBorder+topBorder;
 	}
-	NSRect drawingArea = NSMakeRect(clippingArea.origin.x, clippingArea.origin.y, 
+	NSRect drawingArea = NSMakeRect(clippingArea.origin.x, clippingArea.origin.y,
 			clippingArea.size.width, clippingArea.size.height);
-	int n = [graphObjects count], i;
+	int n = [graphObjects count], i, nexttitle = 0;
 	for (i=0; i<n; i++)
 	{
 		PHGraphObject *object=(PHGraphObject*)[graphObjects objectAtIndex:i];
@@ -479,6 +479,10 @@
 			CGContextSaveGState(context);
 			if (hasBorder) CGContextClipToRect(context,clippingArea);
 			[[graphObjects objectAtIndex:i] drawWithContext:context rect:drawingArea];
+            
+            NSRect drawingTitleArea = NSMakeRect(clippingArea.origin.x+40, clippingArea.size.height-20-nexttitle,
+                                            clippingArea.size.width, clippingArea.size.height);
+            nexttitle += [[graphObjects objectAtIndex:i] drawTitleWithContext:context rect:drawingTitleArea];
 			CGContextRestoreGState(context);
 		}
 	}

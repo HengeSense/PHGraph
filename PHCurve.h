@@ -23,7 +23,8 @@
 
 -(id)initWithXData:(double*)xd yData:(double*)yd numberOfPoints:(int)np
 		xAxis:(PHxAxis*)xaxis yAxis:(PHyAxis*)yaxis;
-		
+-(int) drawTitleWithContext:(CGContextRef)context rect:(NSRect)rect;
+
 -(void)setWidth:(float)newWidth;
 -(void)setStyle:(int)newStyle;
 -(void)setNumberOfPoints:(int)newNumberOfPoints;

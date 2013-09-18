@@ -14,14 +14,17 @@
 	PHxAxis *xAxis;
 	PHyAxis *yAxis;
 	BOOL shouldDraw;
+    NSString *Title;
 }
 
 -(void)drawWithContext:(CGContextRef)context rect:(NSRect)rect;
+-(int)drawTitleWithContext:(CGContextRef)context rect:(NSRect)rect;
 -(id)initWithXAxis:(PHxAxis *)aPHxAxis yAxis:(PHyAxis *)aPHyAxis;
 -(void)setXAxis:(PHxAxis *)aPHxAxis;
 -(void)setYAxis:(PHyAxis *)aPHyAxis;
 -(BOOL)isLongToDraw;
 -(BOOL)shouldDraw;
 -(void)setShouldDraw:(BOOL)flag;
+-(void)setTitle:(NSString*)newTitle;
 
 @end
